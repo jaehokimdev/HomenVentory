@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import UserPage from "./components/Userpage";
+import UserList from "./components/UserList";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/userpage/:_id" element={<UserPage />} />
+            <Route path="/userpage/:id" element={<UserPage />} />
+            <Route path="/userlist/:id" element={<UserList />} />
           </Routes>
         </div>
       </div>

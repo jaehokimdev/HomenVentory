@@ -93,7 +93,7 @@ app.post("/api/user/getAll", async (req, res) => {
     const user = jwt.verify(token, JWT_SECRET);
     console.log(user);
 
-    User.find()
+    User.find({})
       .then((data) => {
         res.send({ status: "ok", data: data });
       })

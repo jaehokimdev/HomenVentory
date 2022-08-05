@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = (props) => {
+  const useremail = props.useremail;
+  const userid = props._id;
   return (
     <div className="App-header">
       <Navbar bg="dark" variant="dark">
@@ -21,12 +23,16 @@ const Header = (props) => {
               </Link>
             </Nav>
             <Nav>
-              <Link to={`/userpage/${props.id}`} className="nav-link">
+              <Link
+                to={`/userlist/${props.userid}`}
+                state={{ useremail, userid }}
+                className="nav-link"
+              >
                 User List
               </Link>
             </Nav>
             <Nav>
-              <Link to={`/inventory/${props.id}`} className="nav-link">
+              <Link to={`/inventory/${props.userid}`} className="nav-link">
                 Inventory List
               </Link>
             </Nav>

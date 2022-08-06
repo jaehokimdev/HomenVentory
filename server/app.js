@@ -27,6 +27,8 @@ require("./userDetails");
 
 const User = mongoose.model("UserInfo");
 
+
+//create a new user
 app.post("/register", async (req, res) => {
   const { fname, lname, email, password, roll, status } = req.body;
 
@@ -51,6 +53,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
+// Login user
 app.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
 
@@ -70,6 +73,8 @@ app.post("/login-user", async (req, res) => {
   res.json({ status: "error", error: "Invalid Password" });
 });
 
+
+//Read login user
 app.post("/userData", async (req, res) => {
   const { token } = req.body;
   try {
@@ -85,6 +90,22 @@ app.post("/userData", async (req, res) => {
   } catch (error) {}
 });
 
+//Read user
+app.post("/api/user/:id", async (req, res) => {
+  const {id} = req.body;
+  try {
+    User.findOne({_id: id})
+    .then((data) => {
+      res.send({ status: "ok", data: data });
+    })
+    .catch((error) => {
+      res.send({ status: "error", data: error });
+    });
+} catch (error) {}
+})
+
+
+//Read All users
 app.post("/api/user/getAll", async (req, res) => {
   const { token } = req.body;
   try {
@@ -98,6 +119,8 @@ app.post("/api/user/getAll", async (req, res) => {
   } catch (error) {}
 });
 
+
+//Delete user
 app.delete("/api/user/delete/:id", async (req, res) => {
   const { _id } = req.body;
   try {
@@ -110,6 +133,12 @@ app.delete("/api/user/delete/:id", async (req, res) => {
       });
   } catch (error) {}
 });
+
+//Edit user
+app.put("/api/user/edit/:id", async (req, res) => {
+  const { _id } = req.body;
+  try {
+    User.findByIdAndUpdate(_id, req.body)
 
 app.listen(5001, () => {
   console.log("Server Started");

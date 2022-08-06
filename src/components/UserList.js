@@ -55,7 +55,10 @@ const UserList = () => {
 
   return (
     <div>
-      <Header userid={location.state.userid} />
+      <Header
+        userid={location.state.userid}
+        useremail={location.state.useremail}
+      />
       <div className="userdetails-body">
         <h2>User List ({location.state.useremail})</h2>
         <Table striped bordered hover>

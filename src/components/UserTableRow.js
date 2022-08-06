@@ -4,12 +4,21 @@ import { useNavigate } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
 
 const UserTableRow = (props) => {
-  const { _id, fname, lname, email, roll, status } = props.user;
+  const { _id, fname, lname, email, password, roll, status } = props.user;
   const navigate = useNavigate();
-  console.log(props.userid, "tableuserid");
 
   const editUser = () => {
-    navigate(`/edituser/${_id}`);
+    navigate(`/edituser/${_id}`, {
+      state: {
+        _id,
+        fname,
+        lname,
+        email,
+        password,
+        roll,
+        userid: props.userid,
+      },
+    });
   };
 
   const deleteUser = () => {

@@ -25,7 +25,6 @@ const Login = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "userRegister");
         if (data.status == "ok") {
           setLoginSuccess(true);
           window.localStorage.setItem("token", data.data);

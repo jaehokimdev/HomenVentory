@@ -41,7 +41,7 @@ const Login = (props) => {
       <form onSubmit={handleSubmit}>
         <h3>Sign In</h3>
         <div className="mb-3">
-          <label>Email address</label>
+          <label className="mb-2">Email address</label>
           <input
             type="email"
             className="form-control"
@@ -49,8 +49,8 @@ const Login = (props) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="mb-3">
-          <label>Password</label>
+        <div className="mb-5">
+          <label className="mb-2">Password</label>
           <input
             type="password"
             className="form-control"
@@ -59,25 +59,14 @@ const Login = (props) => {
           />
         </div>
         {!loginSuccess && <p style={{ color: "red" }}>{errorMessage}</p>}
-        <div className="mb-3">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
-          </div>
-        </div>
+
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </div>
         <p className="forgot-password text-right">
-          <a href="/sign-up">Sign Up</a>
+          Don't have an account? <a href="/sign-up">Sign Up</a>
         </p>
       </form>
     </div>

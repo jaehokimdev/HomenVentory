@@ -6,7 +6,7 @@ import "./Header.css";
 
 const Header = (props) => {
   const useremail = props.useremail;
-  const userid = props._id;
+  const userid = props.userid;
   return (
     <div className="App-header">
       <Navbar bg="dark" variant="dark">
@@ -24,7 +24,7 @@ const Header = (props) => {
             </Nav>
             <Nav>
               <Link
-                to={`/userlist/${props.userid}`}
+                to={`/userlist/${userid}`}
                 state={{ useremail, userid }}
                 className="nav-link"
               >

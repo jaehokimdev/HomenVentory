@@ -47,7 +47,9 @@ const UserList = () => {
     //   );
     // }
     return allUserData.map((user, i) => {
-      return <UserTableRow user={user} key={i} />;
+      return (
+        <UserTableRow user={user} key={i} userid={location.state.userid} />
+      );
     });
   };
 

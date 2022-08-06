@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Header from "./Header";
 import "./Userpage.css";
 
 const Userpage = (props) => {
   const [userData, setUserData] = useState([]);
+  const params = useParams();
 
   useEffect(() => {
     fetch("http://localhost:5001/userData", {
@@ -27,7 +29,7 @@ const Userpage = (props) => {
   }, []);
   return (
     <div>
-      <Header userid={userData._id} useremail={userData.email} />
+      <Header userid={params.id} useremail={userData.email} />
       <div className="userdetails-body">
         <h1>{`Hello! ${userData.fname} ${userData.lname}`}</h1>
         <p>Welcome to HOME nVentory</p>

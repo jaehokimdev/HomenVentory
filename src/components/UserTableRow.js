@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Badge from "react-bootstrap/Badge";
 
 const UserTableRow = (props) => {
   const { _id, fname, lname, email, roll, status } = props.user;
-  const [deleteuser, setDeleteuser] = useState();
   const navigate = useNavigate();
+  console.log(props.userid, "tableuserid");
 
   const editUser = () => {
     navigate(`/edituser/${_id}`);
@@ -22,13 +22,9 @@ const UserTableRow = (props) => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
+        _id,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setDeleteuser(data);
-      });
+    }).then(window.location.reload());
   };
 
   return (
@@ -48,9 +44,11 @@ const UserTableRow = (props) => {
         <Button className="me-3" onClick={editUser} size="sm" variant="primary">
           Edit
         </Button>
-        <Button onClick={deleteUser} size="sm" variant="danger">
-          Delete
-        </Button>
+        {props.userid === _id ? null : (
+          <Button onClick={deleteUser} size="sm" variant="danger">
+            Delete
+          </Button>
+        )}
       </td>
     </tr>
   );

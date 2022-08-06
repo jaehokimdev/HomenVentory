@@ -99,12 +99,9 @@ app.post("/api/user/getAll", async (req, res) => {
 });
 
 app.delete("/api/user/delete/:id", async (req, res) => {
-  const { token } = req.body;
+  const { _id } = req.body;
   try {
-    const user = jwt.verify(token, JWT_SECRET);
-    console.log(user);
-
-    User.findByIdAndDelete(user._id)
+    User.findByIdAndDelete(_id)
       .then((data) => {
         res.send({ status: "ok", data: data });
       })

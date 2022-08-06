@@ -30,22 +30,23 @@ const UserList = () => {
   }, []);
 
   const DataTable = () => {
-    const loginUser = allUserData.find(
-      (user) => user._id === location.state.useerid
-    );
-    let loginUserList = null;
-    if (loginUser.roll === "admin") {
-      loginUserList = allUserData;
-    } else if (loginUser.roll === "owner") {
-      loginUserList = allUserData.filter(
-        (user) => user.roll === "owner" || user.roll !== "admin"
-      );
-    } else {
-      loginUserList = allUserData.filter(
-        (user) => user.id === location.state.useerid
-      );
-    }
-    return loginUserList.map((user, i) => {
+    // const loginUser = allUserData.find(
+    //   (user) => user._id === location.state.useerid
+    // );
+    // console.log(loginUser);
+    // let loginUserList = null;
+    // if (loginUser.roll === "admin") {
+    //   loginUserList = allUserData;
+    // } else if (loginUser.roll === "owner") {
+    //   loginUserList = allUserData.filter(
+    //     (user) => user.roll === "owner" || user.roll !== "admin"
+    //   );
+    // } else {
+    //   loginUserList = allUserData.filter(
+    //     (user) => user.id === location.state.useerid
+    //   );
+    // }
+    return allUserData.map((user, i) => {
       return <UserTableRow user={user} key={i} />;
     });
   };
@@ -62,6 +63,7 @@ const UserList = () => {
               <th>Last Name</th>
               <th>Email</th>
               <th>Roll</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>{DataTable()}</tbody>

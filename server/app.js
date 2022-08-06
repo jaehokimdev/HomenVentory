@@ -7,6 +7,7 @@ app.use(cors());
 const bcrypt = require("bcryptjs");
 
 const jwt = require("jsonwebtoken");
+const { application } = require("express");
 
 const JWT_SECRET =
   "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
@@ -52,7 +53,6 @@ app.post("/register", async (req, res) => {
 
 app.post("/login-user", async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
 
   const user = await User.findOne({ email });
   if (!user) {
@@ -74,8 +74,6 @@ app.post("/userData", async (req, res) => {
   const { token } = req.body;
   try {
     const user = jwt.verify(token, JWT_SECRET);
-    console.log(user);
-
     const useremail = user.email;
     User.findOne({ email: useremail })
       .then((data) => {
@@ -90,10 +88,23 @@ app.post("/userData", async (req, res) => {
 app.post("/api/user/getAll", async (req, res) => {
   const { token } = req.body;
   try {
+    User.find({})
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
+
+app.delete("/api/user/delete/:id", async (req, res) => {
+  const { token } = req.body;
+  try {
     const user = jwt.verify(token, JWT_SECRET);
     console.log(user);
 
-    User.find({})
+    User.findByIdAndDelete(user._id)
       .then((data) => {
         res.send({ status: "ok", data: data });
       })

@@ -32,6 +32,7 @@ const SignUp = (props) => {
       .then((res) => res.json())
       .then((data) => {
         alert(`Created user ${fname} ${lname} successfully!!`);
+        window.location.reload();
         navigate(`/`);
       });
   };

@@ -27,7 +27,6 @@ require("./userDetails");
 
 const User = mongoose.model("UserInfo");
 
-
 //create a new user
 app.post("/register", async (req, res) => {
   const { fname, lname, email, password, roll, status } = req.body;
@@ -73,7 +72,6 @@ app.post("/login-user", async (req, res) => {
   res.json({ status: "error", error: "Invalid Password" });
 });
 
-
 //Read login user
 app.post("/userData", async (req, res) => {
   const { token } = req.body;
@@ -91,23 +89,21 @@ app.post("/userData", async (req, res) => {
 });
 
 //Read user
-app.post("/api/user/:id", async (req, res) => {
-  const {id} = req.body;
+app.post("/api/user/user/:id", async (req, res) => {
+  const { id } = req.body;
   try {
-    User.findOne({_id: id})
-    .then((data) => {
-      res.send({ status: "ok", data: data });
-    })
-    .catch((error) => {
-      res.send({ status: "error", data: error });
-    });
-} catch (error) {}
-})
-
+    User.findOne({ _id: id })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
 
 //Read All users
 app.post("/api/user/getAll", async (req, res) => {
-  const { token } = req.body;
   try {
     User.find({})
       .then((data) => {
@@ -118,7 +114,6 @@ app.post("/api/user/getAll", async (req, res) => {
       });
   } catch (error) {}
 });
-
 
 //Delete user
 app.delete("/api/user/delete/:id", async (req, res) => {
@@ -135,10 +130,26 @@ app.delete("/api/user/delete/:id", async (req, res) => {
 });
 
 //Edit user
-app.put("/api/user/edit/:id", async (req, res) => {
-  const { _id } = req.body;
+app.post("/api/user/edit/:id", async (req, res) => {
+  const { _id, newFname, newLname, newEmail, newPassword, newRoll, newStatus } =
+    req.body;
   try {
-    User.findByIdAndUpdate(_id, req.body)
+    User.findByIdAndUpdate(_id, {
+      fname: newFname,
+      lname: newLname,
+      email: newEmail,
+      password: newPassword,
+      roll: newRoll,
+      status: newStatus,
+    })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
 
 app.listen(5001, () => {
   console.log("Server Started");

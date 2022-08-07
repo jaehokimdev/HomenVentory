@@ -6,7 +6,17 @@ import Form from "react-bootstrap/Form";
 const EditUser = () => {
   const user = useLocation();
   const navigate = useNavigate();
-  const { _id, fname, lname, email, password, roll, status } = user.state;
+  const {
+    _id,
+    fname,
+    lname,
+    email,
+    password,
+    roll,
+    status,
+    userid,
+    useremail,
+  } = user.state;
   const [newFname, setNewFname] = useState(fname);
   const [newLname, setNewLname] = useState(lname);
   const [newEmail, setNewEmail] = useState(email);
@@ -16,7 +26,7 @@ const EditUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5001/register", {
+    fetch(`http://localhost:5001/api/user/edit/${_id}`, {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -25,6 +35,8 @@ const EditUser = () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
+        //token: window.localStorage.getItem("token"),
+        _id,
         newFname,
         newLname,
         newEmail,
@@ -35,8 +47,12 @@ const EditUser = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert(`Created user ${fname} ${lname} successfully!!`);
-        navigate(`/`);
+        navigate(`/userlist/${userid}`, {
+          state: {
+            userid: userid,
+            useremail: useremail,
+          },
+        });
       });
   };
 

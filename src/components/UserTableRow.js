@@ -17,6 +17,7 @@ const UserTableRow = (props) => {
         password,
         roll,
         userid: props.userid,
+        usereamil: props.useremail,
       },
     });
   };

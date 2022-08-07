@@ -27,6 +27,7 @@ const Userpage = (props) => {
         setUserData(data.data);
       });
   }, []);
+
   return (
     <div>
       <Header userid={params.id} useremail={userData.email} />

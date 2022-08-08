@@ -24,8 +24,10 @@ mongoose
   .catch((e) => console.log(e));
 
 require("./userDetails");
+require("./userInventory");
 
 const User = mongoose.model("UserInfo");
+const Inventory = mongoose.model("UserInventory");
 
 //create a new user
 app.post("/register", async (req, res) => {
@@ -141,6 +143,76 @@ app.post("/api/user/edit/:id", async (req, res) => {
       password: newPassword,
       roll: newRoll,
       status: newStatus,
+    })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
+
+////////////////////////////////////////////////////////////////////////
+
+//Create a new items
+app.post("/api/inventory/create", async (req, res) => {
+  const { category, item_name, price, owner } = req.body;
+
+  try {
+    const olditem = await Inventory.findOne({ item_name });
+
+    if (olditem) {
+      return res.json({ error: "Item Exists" });
+    }
+    await Inventory.create({
+      category,
+      item_name,
+      price,
+      owner,
+    });
+    res.send({ status: "ok" });
+  } catch (error) {
+    res.send({ status: "error" });
+  }
+});
+
+//Read All items
+app.post("/api/inventory/getAll", async (req, res) => {
+  try {
+    Inventory.find({})
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
+
+//Delete item
+app.delete("/api/inventory/delete/:id", async (req, res) => {
+  const { _id } = req.body;
+  try {
+    Inventory.findByIdAndDelete(_id)
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
+
+//Edit user
+app.post("/api/inventory/edit/:id", async (req, res) => {
+  const { _id, newCategory, newItem_name, newPrice, newOwner } = req.body;
+  try {
+    Inventory.findByIdAndUpdate(_id, {
+      category: newCategory,
+      item_name: newItem_name,
+      price: newPrice,
+      owner: newOwner,
     })
       .then((data) => {
         res.send({ status: "ok", data: data });

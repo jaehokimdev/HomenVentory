@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 
 const Header = (props) => {
@@ -32,12 +32,20 @@ const Header = (props) => {
               </Link>
             </Nav>
             <Nav>
-              <Link to={`/inventory/${props.userid}`} className="nav-link">
+              <Link
+                to={`/inventory/${userid}`}
+                state={{ useremail, userid }}
+                className="nav-link"
+              >
                 Inventory List
               </Link>
             </Nav>
             <Nav>
-              <Link to={"/"} className="nav-link">
+              <Link
+                to={"/"}
+                className="nav-link"
+                onClick={() => window.localStorage.removeItem("token")}
+              >
                 Logout
               </Link>
             </Nav>

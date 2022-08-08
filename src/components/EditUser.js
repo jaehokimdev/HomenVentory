@@ -35,7 +35,6 @@ const EditUser = () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-        //token: window.localStorage.getItem("token"),
         _id,
         newFname,
         newLname,

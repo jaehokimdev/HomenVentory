@@ -40,7 +40,7 @@ const InventoryTableRow = (props) => {
     <tr>
       <td>{category}</td>
       <td>{item_name}</td>
-      <td>${price}</td>
+      <td>${price.toFixed(2)}</td>
       <td>{owner}</td>
       <td>
         <Button className="me-3" size="sm" onClick={editItem} variant="primary">

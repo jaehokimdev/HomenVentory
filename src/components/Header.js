@@ -26,7 +26,7 @@ const Header = (props) => {
             <Nav>
               <Link
                 to={`/userlist/${userid}`}
-                state={{ useremail, userid }}
+                state={{ useremail, userid, userroll }}
                 className="nav-link"
               >
                 User List

@@ -75,6 +75,7 @@ const UserList = () => {
       <Header
         userid={location.state.userid}
         useremail={location.state.useremail}
+        userroll={location.state.userroll}
       />
       <div className="userdetails-body">
         <h2>User List ({location.state.useremail})</h2>

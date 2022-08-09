@@ -34,6 +34,7 @@ const InventoryList = () => {
       state: {
         userid,
         useremail,
+        userroll,
       },
     });
   };
@@ -57,32 +58,56 @@ const InventoryList = () => {
       });
 
     if (userroll === "admin") {
-      return allInventoryData.map((item, i) => {
+      if (allInventoryData === null) {
+        return null;
+      } else {
+        return allInventoryData.map((item, i) => {
+          return (
+            <InventoryTableRow
+              items={item}
+              key={i}
+              userid={location.state.userid}
+              useremail={location.state.useremail}
+            />
+          );
+        });
+      }
+    } else if (userroll === "user") {
+      if (userInventoryData === null) {
+        return null;
+      } else if (userInventoryData.length <= 2) {
+        return userInventoryData.map((item, i) => {
+          return (
+            <InventoryTableRow
+              items={item}
+              key={i}
+              userid={location.state.userid}
+              useremail={location.state.useremail}
+            />
+          );
+        });
+      } else {
         return (
           <InventoryTableRow
-            items={item}
-            key={i}
+            items={userInventoryData}
             userid={location.state.userid}
             useremail={location.state.useremail}
           />
         );
-      });
+      }
     } else {
-      return (
-        <InventoryTableRow
-          items={userInventoryData}
-          userid={location.state.userid}
-          useremail={location.state.useremail}
-        />
-      );
+      return null;
     }
   };
+
+  console.log(userInventoryData);
 
   return (
     <div>
       <Header
         userid={location.state.userid}
         useremail={location.state.useremail}
+        userroll={location.state.userroll}
       />
       <div className="userdetails-body">
         <h2>

@@ -199,11 +199,11 @@ app.post("/api/inventory/getAll", async (req, res) => {
 
 //Read item
 app.post("/api/inventory/item/:owner", async (req, res) => {
-  const { owner } = req.body;
+  const { useremail } = req.body;
   try {
-    Inventory.findOne({ owner: owner })
+    Inventory.findOne({ owner: useremail })
       .then((data) => {
-        res.send({ status: "ok", data: data });
+        res.send({ status: "ok", data: [data] });
       })
       .catch((error) => {
         res.send({ status: "error", data: error });

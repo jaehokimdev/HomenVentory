@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 const CreateItem = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userid, useremail } = location.state;
+  const { userid, useremail, userroll } = location.state;
   const [category, setCategory] = useState("");
   const [item_name, setItemName] = useState("");
   const [price, setPrice] = useState("");
@@ -36,6 +36,7 @@ const CreateItem = (props) => {
           state: {
             userid,
             useremail,
+            userroll,
           },
         });
       });
@@ -84,7 +85,7 @@ const CreateItem = (props) => {
             className="form-control"
             placeholder="Enter Owner"
             value={owner}
-            disabled
+            disabled={userroll !== "admin"}
             onChange={(e) => setOwner(e.target.value)}
           />
         </div>

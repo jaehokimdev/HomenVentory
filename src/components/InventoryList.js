@@ -58,49 +58,29 @@ const InventoryList = () => {
       });
 
     if (userroll === "admin") {
-      if (allInventoryData === null) {
-        return null;
-      } else {
-        return allInventoryData.map((item, i) => {
-          return (
-            <InventoryTableRow
-              items={item}
-              key={i}
-              userid={location.state.userid}
-              useremail={location.state.useremail}
-            />
-          );
-        });
-      }
-    } else if (userroll === "user") {
-      if (userInventoryData === null) {
-        return null;
-      } else if (userInventoryData.length <= 2) {
-        return userInventoryData.map((item, i) => {
-          return (
-            <InventoryTableRow
-              items={item}
-              key={i}
-              userid={location.state.userid}
-              useremail={location.state.useremail}
-            />
-          );
-        });
-      } else {
+      return allInventoryData.map((item, i) => {
         return (
           <InventoryTableRow
-            items={userInventoryData}
+            items={item}
+            key={i}
             userid={location.state.userid}
             useremail={location.state.useremail}
           />
         );
-      }
+      });
     } else {
-      return null;
+      return userInventoryData.map((item, i) => {
+        return (
+          <InventoryTableRow
+            items={item}
+            key={i}
+            userid={location.state.userid}
+            useremail={location.state.useremail}
+          />
+        );
+      });
     }
   };
-
-  console.log(userInventoryData);
 
   return (
     <div>
@@ -123,6 +103,7 @@ const InventoryList = () => {
               <th>Item Name</th>
               <th>Price</th>
               <th>Owner</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>{DataTable()}</tbody>

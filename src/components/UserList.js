@@ -87,6 +87,7 @@ const UserList = () => {
               <th>Email</th>
               <th>Roll</th>
               <th>Status</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>{DataTable()}</tbody>

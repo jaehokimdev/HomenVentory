@@ -83,13 +83,12 @@ const SignUp = (props) => {
         </div>
 
         <div className="mb-3">
+          <label>Roll</label>
           <Form.Select
             aria-label="Default select example"
             onChange={(e) => setRoll(e.target.value)}
           >
-            <option>Select Your Roll</option>
-            <option value="admin">Admin</option>
-            <option value="owner">Owner</option>
+            <option value="admin">Administrator</option>
             <option value="user">User</option>
           </Form.Select>
         </div>

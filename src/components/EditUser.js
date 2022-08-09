@@ -110,9 +110,7 @@ const EditUser = () => {
             aria-label="Default select example"
             onChange={(e) => setNewRoll(e.target.value)}
           >
-            <option>Select Your Roll</option>
-            <option value="admin">Admin</option>
-            <option value="owner">Owner</option>
+            <option value="admin">Administrator</option>
             <option value="user">User</option>
           </Form.Select>
         </div>
@@ -125,6 +123,7 @@ const EditUser = () => {
             name="status"
             type="radio"
             id="active"
+            checked
             onChange={() => setNewStatus(true)}
           />
           <Form.Check

@@ -48,7 +48,7 @@ const Login = (props) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="mb-5">
+        <div className="mb-4">
           <label className="mb-2">Password</label>
           <input
             type="password"

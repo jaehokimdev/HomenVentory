@@ -30,7 +30,11 @@ const Userpage = (props) => {
 
   return (
     <div>
-      <Header userid={params.id} useremail={userData.email} />
+      <Header
+        userid={params.id}
+        useremail={userData.email}
+        userroll={userData.roll}
+      />
       <div className="userdetails-body">
         <h1>{`Hello! ${userData.fname} ${userData.lname}`}</h1>
         <p>Welcome to HOME nVentory</p>

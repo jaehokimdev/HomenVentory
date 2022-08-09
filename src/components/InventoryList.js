@@ -8,9 +8,10 @@ import { Button } from "react-bootstrap";
 
 const InventoryList = () => {
   const [allInventoryData, setAllInventoryData] = useState([]);
+  const [userInventoryData, setUserInventoryData] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { userid, useremail } = location.state;
+  const { userid, useremail, userroll } = location.state;
 
   useEffect(() => {
     fetch("http://localhost:5001/api/inventory/getAll", {
@@ -38,32 +39,43 @@ const InventoryList = () => {
   };
 
   const DataTable = () => {
-    // const loginUser = allUserData.find(
-    //   (user) => user._id === location.state.useerid
-    // );
-    // console.log(loginUser);
-    // let loginUserList = null;
-    // if (loginUser.roll === "admin") {
-    //   loginUserList = allUserData;
-    // } else if (loginUser.roll === "owner") {
-    //   loginUserList = allUserData.filter(
-    //     (user) => user.roll === "owner" || user.roll !== "admin"
-    //   );
-    // } else {
-    //   loginUserList = allUserData.filter(
-    //     (user) => user.id === location.state.useerid
-    //   );
-    // }
-    return allInventoryData.map((items, i) => {
+    fetch("http://localhost:5001/api/inventory/item/:owner", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        useremail: useremail,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserInventoryData(data.data);
+      });
+
+    if (userroll === "admin") {
+      return allInventoryData.map((item, i) => {
+        return (
+          <InventoryTableRow
+            items={item}
+            key={i}
+            userid={location.state.userid}
+            useremail={location.state.useremail}
+          />
+        );
+      });
+    } else {
       return (
         <InventoryTableRow
-          items={items}
-          key={i}
+          items={userInventoryData}
           userid={location.state.userid}
           useremail={location.state.useremail}
         />
       );
-    });
+    }
   };
 
   return (

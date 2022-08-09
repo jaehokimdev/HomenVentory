@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import "./UserList.css";
 import { Table } from "react-bootstrap";
@@ -30,32 +30,44 @@ const UserList = () => {
   }, []);
 
   const DataTable = () => {
-    // const loginUser = allUserData.find(
-    //   (user) => user._id === location.state.useerid
-    // );
-    // console.log(loginUser);
-    // let loginUserList = null;
-    // if (loginUser.roll === "admin") {
-    //   loginUserList = allUserData;
-    // } else if (loginUser.roll === "owner") {
-    //   loginUserList = allUserData.filter(
-    //     (user) => user.roll === "owner" || user.roll !== "admin"
-    //   );
-    // } else {
-    //   loginUserList = allUserData.filter(
-    //     (user) => user.id === location.state.useerid
-    //   );
-    // }
-    return allUserData.map((user, i) => {
+    fetch("http://localhost:5001/userData", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        token: window.localStorage.getItem("token"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUserData(data.data);
+      });
+
+    if (userData.roll === "admin") {
+      return allUserData.map((user, i) => {
+        return (
+          <UserTableRow
+            user={user}
+            key={i}
+            userid={location.state.userid}
+            useremail={location.state.useremail}
+          />
+        );
+      });
+    } else {
       return (
         <UserTableRow
-          user={user}
-          key={i}
+          user={userData}
+          key={userData.id}
           userid={location.state.userid}
           useremail={location.state.useremail}
         />
       );
-    });
+    }
   };
 
   return (

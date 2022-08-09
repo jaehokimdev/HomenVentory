@@ -66,7 +66,14 @@ app.post("/login-user", async (req, res) => {
     const token = jwt.sign({ email: user.email }, JWT_SECRET);
 
     if (res.status(201)) {
-      return res.json({ status: "ok", data: token, id: user._id });
+      if (user.status) {
+        return res.json({ status: "ok", data: token, id: user._id });
+      } else {
+        return res.json({
+          status: "error",
+          error: "This user is not active. Please contact your administrator",
+        });
+      }
     } else {
       return res.json({ error: "error" });
     }
@@ -181,6 +188,20 @@ app.post("/api/inventory/create", async (req, res) => {
 app.post("/api/inventory/getAll", async (req, res) => {
   try {
     Inventory.find({})
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
+
+//Read item
+app.post("/api/inventory/item/:owner", async (req, res) => {
+  const { owner } = req.body;
+  try {
+    Inventory.findOne({ owner: owner })
       .then((data) => {
         res.send({ status: "ok", data: data });
       })

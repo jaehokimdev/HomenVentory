@@ -191,9 +191,10 @@ app.post("/api/user/getAll", async (req, res) => {
 
 //Delete user
 app.delete("/api/user/delete/:id", async (req, res) => {
-  const { _id } = req.body;
+  const { _id, email } = req.body;
   try {
     User.findByIdAndDelete(_id)
+      .then(Inventory.findOneAndDelete({ owner: email }))
       .then((data) => {
         res.send({ status: "ok", data: data });
       })

@@ -34,6 +34,7 @@ const UserTableRow = (props) => {
       },
       body: JSON.stringify({
         _id,
+        email,
       }),
     }).then(window.location.reload());
   };

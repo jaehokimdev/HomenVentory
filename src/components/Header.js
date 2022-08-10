@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = (props) => {
@@ -18,11 +18,18 @@ const Header = (props) => {
             </Link>
           </Navbar.Brand>
           <Nav className="justify-content-end ">
-            <Nav>
-              <Link to={"/sign-up"} className="nav-link">
-                Create User
-              </Link>
-            </Nav>
+            {userroll === "admin" && (
+              <Nav>
+                <Link
+                  to={"/sign-up"}
+                  state={{ useremail, userid, userroll }}
+                  className="nav-link"
+                >
+                  Create User
+                </Link>
+              </Nav>
+            )}
+
             <Nav>
               <Link
                 to={`/userlist/${userid}`}
@@ -41,6 +48,17 @@ const Header = (props) => {
                 Inventory List
               </Link>
             </Nav>
+            {userroll === "admin" && (
+              <Nav>
+                <Link
+                  to={`/category/${userid}`}
+                  state={{ useremail, userid, userroll }}
+                  className="nav-link"
+                >
+                  Category List
+                </Link>
+              </Nav>
+            )}
             <Nav>
               <Link
                 to={"/"}

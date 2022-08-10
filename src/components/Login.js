@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
@@ -7,6 +7,21 @@ const Login = (props) => {
   const [loginSuccess, setLoginSuccess] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("http://localhost:5001/createbasedata", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((res) => res.json())
+      .then((data) => {});
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,12 +76,9 @@ const Login = (props) => {
 
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
-            Submit
+            Sign in
           </button>
         </div>
-        <p className="forgot-password text-right">
-          Don't have an account? <a href="/sign-up">Sign Up</a>
-        </p>
       </form>
     </div>
   );

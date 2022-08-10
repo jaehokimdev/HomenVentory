@@ -16,6 +16,7 @@ const EditUser = () => {
     status,
     userid,
     useremail,
+    userroll,
   } = user.state;
   const [newFname, setNewFname] = useState(fname);
   const [newLname, setNewLname] = useState(lname);
@@ -50,6 +51,7 @@ const EditUser = () => {
           state: {
             userid: userid,
             useremail: useremail,
+            userroll: userroll,
           },
         });
       });

@@ -10,6 +10,9 @@ import EditUser from "./components/EditUser";
 import InventoryList from "./components/InventoryList";
 import CreateItem from "./components/CreateItem";
 import EditInventory from "./components/EditInventory";
+import CategoryList from "./components/CategoryList";
+import CreateCategory from "./components/CreateCategory";
+import EditCategory from "./components/EditCategory";
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
             <Route path="/inventory/:id" element={<InventoryList />} />
             <Route path="/createitem" element={<CreateItem />} />
             <Route path="/edititem/:id" element={<EditInventory />} />
+            <Route path="/category/:id" element={<CategoryList />} />
+            <Route path="/createcategory" element={<CreateCategory />} />
+            <Route path="/editcategory/:id" element={<EditCategory />} />
           </Routes>
         </div>
       </div>

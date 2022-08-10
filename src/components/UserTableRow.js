@@ -18,6 +18,7 @@ const UserTableRow = (props) => {
         roll,
         userid: props.userid,
         useremail: props.useremail,
+        userroll: props.userroll,
       },
     });
   };
@@ -51,9 +52,16 @@ const UserTableRow = (props) => {
         )}
       </td>
       <td>
-        <Button className="me-3" onClick={editUser} size="sm" variant="primary">
-          Edit
-        </Button>
+        {email === "cprg352+admin@gmail.com" ? null : (
+          <Button
+            className="me-3"
+            onClick={editUser}
+            size="sm"
+            variant="primary"
+          >
+            Edit
+          </Button>
+        )}
         {props.userid === _id ? null : (
           <Button onClick={deleteUser} size="sm" variant="danger">
             Delete

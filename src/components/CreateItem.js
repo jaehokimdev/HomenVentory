@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
@@ -7,10 +7,27 @@ const CreateItem = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { userid, useremail, userroll } = location.state;
-  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState("Office");
   const [item_name, setItemName] = useState("");
   const [price, setPrice] = useState("");
   const [owner, setOwner] = useState(useremail);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/api/category/getAll", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCategories(data.data);
+      });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,12 +66,14 @@ const CreateItem = (props) => {
 
         <div className="mb-3">
           <label>Category</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Category"
+          <Form.Select
+            aria-label="Default select example"
             onChange={(e) => setCategory(e.target.value)}
-          />
+          >
+            {categories.map((c) => (
+              <option value={c.categoryName}>{c.categoryName}</option>
+            ))}
+          </Form.Select>
         </div>
 
         <div className="mb-3">

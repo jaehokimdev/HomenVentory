@@ -59,7 +59,8 @@ html,
   box-shadow: none;
 }
 
-.auth-wrapper h3 {
+.auth-wrapper h3,
+h4 {
   text-align: center;
   margin: 0;
   line-height: 1;

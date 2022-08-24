@@ -79,6 +79,9 @@ const Login = (props) => {
             Sign in
           </button>
         </div>
+        <p className="forgot-password text-right">
+          Don't have Account?<a href="/sign-up">Sign Up</a>
+        </p>
       </form>
     </div>
   );

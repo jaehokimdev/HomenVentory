@@ -13,6 +13,7 @@ import EditInventory from "./components/EditInventory";
 import CategoryList from "./components/CategoryList";
 import CreateCategory from "./components/CreateCategory";
 import EditCategory from "./components/EditCategory";
+import CreateUser from "./components/CreateUser";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/" element={<Login />} />
             <Route path="/sign-in" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/createuser" element={<CreateUser />} />
             <Route path="/userpage/:id" element={<UserPage />} />
             <Route path="/userlist/:id" element={<UserList />} />
             <Route path="/edituser/:id" element={<EditUser />} />

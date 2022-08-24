@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
 const CreateUser = (props) => {
+  const location = useLocation();
+  const { userid, useremail, userroll } = location.state;
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
@@ -32,14 +34,20 @@ const CreateUser = (props) => {
       .then((res) => res.json())
       .then((data) => {
         alert(`Created user ${fname} ${lname} successfully!!`);
-        navigate(`/`);
+        navigate(`/userlist/${userid}`, {
+          state: {
+            userid: userid,
+            useremail: useremail,
+            userroll: userroll,
+          },
+        });
       });
   };
 
   return (
     <div className="auth-inner">
       <form onSubmit={handleSubmit}>
-        <h3>Sign Up</h3>
+        <h3>Create User</h3>
 
         <div className="mb-3">
           <label>First name</label>
@@ -97,9 +105,6 @@ const CreateUser = (props) => {
             Sign Up
           </button>
         </div>
-        <p className="forgot-password text-right">
-          Already registered <a href="/sign-in">sign in?</a>
-        </p>
       </form>
     </div>
   );

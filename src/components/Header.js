@@ -21,7 +21,7 @@ const Header = (props) => {
             {userroll === "admin" && (
               <Nav>
                 <Link
-                  to={"/sign-up"}
+                  to={"/createuser"}
                   state={{ useremail, userid, userroll }}
                   className="nav-link"
                 >

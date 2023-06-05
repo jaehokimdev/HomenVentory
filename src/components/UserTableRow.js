@@ -53,7 +53,7 @@ const UserTableRow = (props) => {
         )}
       </td>
       <td>
-        {email === "cprg352+admin@gmail.com" ? null : (
+        {email === "admin@gmail.com" ? null : (
           <Button
             className="me-3"
             onClick={editUser}
@@ -63,7 +63,7 @@ const UserTableRow = (props) => {
             Edit
           </Button>
         )}
-        {props.userid === _id || email === "cprg352+admin@gmail.com" ? null : (
+        {props.userid === _id || email === "admin@gmail.com" ? null : (
           <Button onClick={deleteUser} size="sm" variant="danger">
             Delete
           </Button>

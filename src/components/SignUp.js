@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
-const CreateUser = (props) => {
+const SignUp = (props) => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ const CreateUser = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://140.238.152.2/register", {
+    fetch("http://140.238.152.2:5555/register", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -105,4 +105,4 @@ const CreateUser = (props) => {
   );
 };
 
-export default CreateUser;
+export default SignUp;

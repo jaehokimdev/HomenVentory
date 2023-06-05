@@ -9,7 +9,7 @@ const Login = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://140.238.152.2/createbasedata", {
+    fetch("http://140.238.152.2:5555/createbasedata", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -25,7 +25,7 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://140.238.152.2/login-user", {
+    fetch("http://140.238.152.2:5555/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -79,9 +79,6 @@ const Login = (props) => {
             Sign in
           </button>
         </div>
-        <p className="forgot-password text-right">
-          Don't have Account?<a href="/sign-up">Sign Up</a>
-        </p>
       </form>
     </div>
   );

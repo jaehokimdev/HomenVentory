@@ -15,7 +15,7 @@ const EditUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://140.238.152.2/api/inventory/edit/${_id}`, {
+    fetch(`http://140.238.152.2:5555/api/inventory/edit/${_id}`, {
       method: "POST",
       crossDomain: true,
       headers: {

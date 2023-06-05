@@ -14,7 +14,7 @@ const CreateItem = (props) => {
   const [owner, setOwner] = useState(useremail);
 
   useEffect(() => {
-    fetch("http://140.238.152.2/api/category/getAll", {
+    fetch("http://140.238.152.2:5555/api/category/getAll", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -31,7 +31,7 @@ const CreateItem = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://140.238.152.2/api/inventory/create", {
+    fetch("http://140.238.152.2:5555/api/inventory/create", {
       method: "POST",
       crossDomain: true,
       headers: {

@@ -11,7 +11,7 @@ const CreateCategory = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://140.238.152.2/api/category/create", {
+    fetch("http://140.238.152.2:5555/api/category/create", {
       method: "POST",
       crossDomain: true,
       headers: {

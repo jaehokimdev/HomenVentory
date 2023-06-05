@@ -10,7 +10,7 @@ const Userpage = (props) => {
   const params = useParams();
 
   useEffect(() => {
-    fetch("http://140.238.152.2/userData", {
+    fetch("http://140.238.152.2:5555/userData", {
       method: "POST",
       crossDomain: true,
       headers: {

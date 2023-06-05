@@ -22,7 +22,7 @@ const InventoryTableRow = (props) => {
   };
 
   const deleteItem = () => {
-    fetch(`http://140.238.152.2/api/inventory/delete/${_id}`, {
+    fetch(`http://140.238.152.2:5555/api/inventory/delete/${_id}`, {
       method: "DELETE",
       crossDomain: true,
       headers: {

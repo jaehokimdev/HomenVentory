@@ -12,7 +12,8 @@ const { application } = require("express");
 const JWT_SECRET =
   "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 
-const mongoUrl = "mongodb://127.0.0.1:27017/HOMEnVentory";
+const mongoUrl =
+  "mongodb+srv://newdoldol:new1212@cluster0.nfbfxqo.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose
   .connect(mongoUrl, {

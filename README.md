@@ -2,6 +2,10 @@
 
 > This web application helps homeowners keep track of their inventory of household items for insurance purposes. I created this project in the third semester of college <a href="https://www.sait.ca/programs-and-courses/diplomas/information-technology" target='_blank'>(SAIT)</a>.
 
+## SITE
+
+<a href="http://inventory.thejaehokim.com" target='_blank'>HOMEnVentory</a>
+
 ## Languages
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)

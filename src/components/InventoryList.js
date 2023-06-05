@@ -14,7 +14,7 @@ const InventoryList = () => {
   const { userid, useremail, userroll } = location.state;
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/inventory/getAll", {
+    fetch("http://140.238.152.2/api/inventory/getAll", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -40,7 +40,7 @@ const InventoryList = () => {
   };
 
   const DataTable = () => {
-    fetch("http://localhost:5001/api/inventory/item/:owner", {
+    fetch("http://140.238.152.2/api/inventory/item/:owner", {
       method: "POST",
       crossDomain: true,
       headers: {

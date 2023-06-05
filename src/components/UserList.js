@@ -11,7 +11,7 @@ const UserList = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/user/getAll", {
+    fetch("http://140.238.152.2/api/user/getAll", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -30,7 +30,7 @@ const UserList = () => {
   }, []);
 
   const DataTable = () => {
-    fetch("http://localhost:5001/userData", {
+    fetch("http://140.238.152.2/userData", {
       method: "POST",
       crossDomain: true,
       headers: {

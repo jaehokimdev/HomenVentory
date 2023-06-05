@@ -15,7 +15,7 @@ const CreateUser = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5001/register", {
+    fetch("http://140.238.152.2/register", {
       method: "POST",
       crossDomain: true,
       headers: {

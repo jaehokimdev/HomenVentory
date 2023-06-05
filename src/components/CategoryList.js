@@ -13,7 +13,7 @@ const CategoryList = () => {
   const { userid, useremail, userroll } = location.state;
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/category/getAll", {
+    fetch("http://140.238.152.2/api/category/getAll", {
       method: "POST",
       crossDomain: true,
       headers: {

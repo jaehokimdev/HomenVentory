@@ -24,7 +24,7 @@ const UserTableRow = (props) => {
   };
 
   const deleteUser = () => {
-    fetch(`http://localhost:5001/api/user/delete/${_id}`, {
+    fetch(`http://140.238.152.2/api/user/delete/${_id}`, {
       method: "DELETE",
       crossDomain: true,
       headers: {

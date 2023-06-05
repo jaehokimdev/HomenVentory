@@ -9,7 +9,7 @@ const Login = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5001/createbasedata", {
+    fetch("http://140.238.152.2/createbasedata", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -25,7 +25,7 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:5001/login-user", {
+    fetch("http://140.238.152.2/login-user", {
       method: "POST",
       crossDomain: true,
       headers: {

@@ -364,6 +364,6 @@ app.post("/api/category/edit/:id", async (req, res) => {
   } catch (error) {}
 });
 
-app.listen(5001, () => {
+app.listen(5555, () => {
   console.log("Server Started");
 });
